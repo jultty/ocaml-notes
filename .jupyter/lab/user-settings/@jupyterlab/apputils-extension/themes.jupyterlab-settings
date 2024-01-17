@@ -1,0 +1,12 @@
+{
+    "theme": "JupyterLab Dark",
+    "theme-scrollbars": false,
+    "overrides": {
+        "code-font-family": "ShureTechMono Nerd Font",
+        "code-font-size": null,
+        "content-font-family": "ShureTechMono Nerd Font",
+        "content-font-size1": null,
+        "ui-font-family": "ShureTechMono Nerd Font",
+        "ui-font-size1": null
+    }
+}
