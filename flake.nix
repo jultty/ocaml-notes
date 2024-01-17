@@ -1,12 +1,9 @@
 {
-  description = "Your jupyenv project";
+  description = "Notes on learning OCaml";
 
-  nixConfig.extra-substituters = [
-    "https://tweag-jupyter.cachix.org"
-  ];
-  nixConfig.extra-trusted-public-keys = [
-    "tweag-jupyter.cachix.org-1:UtNH4Zs6hVUFpFBTLaA4ejYavPo5EFFqgd7G7FxGW9g="
-  ];
+  nixConfig.extra-substituters = [ "https://tweag-jupyter.cachix.org" ];
+  nixConfig.extra-trusted-public-keys = 
+    [ "tweag-jupyter.cachix.org-1:UtNH4Zs6hVUFpFBTLaA4ejYavPo5EFFqgd7G7FxGW9g=" ];
 
   inputs.flake-compat.url = "github:edolstra/flake-compat";
   inputs.flake-compat.flake = false;
@@ -21,17 +18,13 @@
     nixpkgs,
     jupyenv,
     ...
-  } @ inputs:
-    flake-utils.lib.eachSystem
-    [
-      flake-utils.lib.system.x86_64-linux
-    ]
+  } @ inputs: flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ]
     (
       system: let
         inherit (jupyenv.lib.${system}) mkJupyterlabNew;
         jupyterlab = mkJupyterlabNew ({...}: {
           nixpkgs = inputs.nixpkgs;
-          imports = [(import ./kernels.nix)];
+          imports = [({pkgs, ...}: { kernel.ocaml.minimal.enable = true; })];
         });
       in rec {
         packages = {inherit jupyterlab;};
