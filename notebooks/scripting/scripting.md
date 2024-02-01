@@ -29,7 +29,7 @@ function nvw {
 
 ```
 
-While this worked a intended, at some point I wanted the function to also stage the edited files and launch an editor for the commit message, so I added the following to the bottom:
+While this worked as intended, at some point I wanted the function to also stage the edited files and launch an editor for the commit message, so I added the following to the bottom:
 
 ```bash
 for a in "${args[*]}"; do
